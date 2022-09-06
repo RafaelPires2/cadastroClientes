@@ -6,6 +6,9 @@
 :root{
     --white: #fff;
     --btn-close: #FF4949;
+    --btn-create: #1FB6FF;
+    --btn-edit:#13CE66;
+    --btn-delete:#FF4949;
 
     --primary-color: #FFBA00;
     --secundary-color: #FFF1CC;
