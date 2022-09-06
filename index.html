@@ -7,6 +7,63 @@
     <title>Cadastro de Clientes</title>
 </head>
 <body>
+
+    <header class="header-title">
+        <h1 class="title">Cadastro de Clientes</h1>
+    </header>
+    <main>
+        <button type="button" class="button" id="cadastrarCliente">Cadastrar Cliente</button>
     
+
+    <table class="records" border='1'>
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>E-mail</th>
+                <th>Celular</th>
+                <th>Cidade</th>
+                <th>Ação</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Juliana</td>
+                <td>juliana@gmail.com</td>
+                <td>(11) 99898-7788</td>
+                <td>São Paulo</td>
+                <td>
+                    <button type="button" class="button edit">Editar</button>
+                    <button type="button" class="button delete">Excluir</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="modal" id="modal">
+        <div class="modal-content">
+
+            <header class="modal-header">
+                <h2>Novo Cliente</h2>
+                <span class="modal-close" id="modalClose">&#10006;</span>
+            </header>
+
+            <form class="modal-form">
+                <input type="text" class="modal-field" placeholder="Nome Cliente">
+                <input type="email" class="modal-field" placeholder="E-mail do Cliente">
+                <input type="text" class="modal-field" placeholder="Celular do Cliente">
+                <input type="text" class="modal-field" placeholder="Cidade do Cliente">
+            </form>
+
+            <footer class="modal-footer">
+                <button type="button" class="button edit">Salvar</button>
+                <button type="button" class="button delete">Cancelar</button>
+            </footer>
+
+        </div>
+    </div>
+    </main>
+    <footer>
+        Copyright &copy; Rafa Dev
+    </footer>
 </body>
 </html>
