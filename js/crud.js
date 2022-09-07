@@ -1,9 +1,22 @@
-const tempClient = {
-    nome: 'Jorge',
-    email: 'jorge@gmail.com',
-    celular: '11999887755',
-    cidade: 'Poá'
+const openModal = () =>  document.querySelector('#modal')
+    .classList.add('active')
+
+
+const closeModal = () => {
+    clearFields()
+    document.querySelector('#modal').classList.remove('active')
 }
+
+
+
+//cliente temporario para testes no console
+
+// const tempClient = {
+//     nome: 'Jorge',
+//     email: 'jorge@gmail.com',
+//     celular: '11999887755',
+//     cidade: 'Poá'
+// }
 
 //functions que tranformam o objeto em JSON e String
 // Functions criadas para facilitar o uso em outros locais
@@ -34,3 +47,79 @@ const deleteClient = (index) =>{
     dbClient.splice(index, 1)
     setLocalStorage(dbClient)
 }
+
+
+
+
+
+
+//interação com usuario
+const clearFields = () => {
+    const fields = document.querySelectorAll('.modal-field')
+    fields.forEach(field => field.value = "")
+}
+
+
+const saveClient = () => {
+    if (isValidFields()){
+       const client = {
+            nome: document.querySelector('#nome').value,
+            email: document.querySelector('#email').value,
+            celular: document.querySelector('#celular').value,
+            cidade: document.querySelector('#cidade').value
+       }
+       createClient(client)
+       closeModal()
+    }
+}
+const createRow = (client) => {
+    const newRow = document.createElement('tr')
+    newRow.innerHTML = `
+        <td>${client.nome}</td>
+        <td>${client.email}</td>
+        <td>${client.celular}</td>
+        <td>${client.cidade}</td>
+        <td>
+            <button type="button" class="button green">editar</button>
+            <button type="button" class="button red">excluir</button>
+        </td>
+    
+    `
+}
+
+
+const clearTable = () => {
+    const rows = document.querySelectorAll('#tableClient>tbody tr')
+    rows.forEach(row => row.parentNode.removeChild(row))
+}
+
+const updateTable = () => {
+    const dbClient = readClient()
+    clearTable()
+    dbClient.forEach(createRow)
+}
+
+
+updateTable()
+
+
+const isValidFields =() => {
+    return document.querySelector('#modalForm').reportValidity()
+}
+
+
+
+//Eventos
+document.querySelector('#salvar')
+    .addEventListener('click', saveClient)
+
+document.querySelector('#cadastrarCliente')
+    .addEventListener('click', openModal)
+    
+document.querySelector('#modalClose')
+    .addEventListener('click', closeModal)
+
+
+
+   // https://www.youtube.com/watch?v=_HEIqE_qqbQ&t=340s&ab_channel=FernandoLeonid
+    // time 1:12:39
