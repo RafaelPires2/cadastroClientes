@@ -12,6 +12,7 @@
 .records td{
     height: 5rem;
     padding-left: 2rem;
+    font-size: 1.6rem;
 }
 .records th:last-child,
 .records td:last-child{
