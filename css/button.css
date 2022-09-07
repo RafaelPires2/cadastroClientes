@@ -24,7 +24,7 @@
 
 
 
-/* 
+
 @media(max-width:480px){
     .button.mobile{
         color:transparent;
@@ -43,4 +43,6 @@
         width:100%;
         height:100%;
     }
-} */
+}
+
+/* https://github.com/fernandoleonid/speed-code-css-html/tree/main/07-crud */
