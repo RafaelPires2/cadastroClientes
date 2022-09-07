@@ -36,12 +36,12 @@
     }
     .records td:not(:first-child){
         display:flex;
-        justify-content: space-between;
+        justify-content:space-between;
         padding: 0 20px;
     }
 
     .records td{
-        margin:10px 0;
+        margin:50px 0;
     }
 
     .records tr:hover{
