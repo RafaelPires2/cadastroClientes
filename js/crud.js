@@ -69,10 +69,11 @@ const saveClient = () => {
             cidade: document.querySelector('#cidade').value
        }
        createClient(client)
+       updateTable()
        closeModal()
     }
 }
-const createRow = (client) => {
+const createRow = (client, index) => {
     const newRow = document.createElement('tr')
     newRow.innerHTML = `
         <td>${client.nome}</td>
@@ -80,11 +81,11 @@ const createRow = (client) => {
         <td>${client.celular}</td>
         <td>${client.cidade}</td>
         <td>
-            <button type="button" class="button green">editar</button>
-            <button type="button" class="button red">excluir</button>
+            <button type="button" class="button green" id="edit-${index}">Editar</button>
+            <button type="button" class="button red " id="delete-${index}">Excluir</button>
         </td>
-    
     `
+    document.querySelector('#tableClient>tbody').appendChild(newRow)
 }
 
 
@@ -98,6 +99,32 @@ const updateTable = () => {
     clearTable()
     dbClient.forEach(createRow)
 }
+
+
+const fillFields = (client) => {
+    document.querySelector('#nome').value = client.nome
+    document.querySelector('#email').value = client.email
+    document.querySelector('#celular').value = client.celular
+    document.querySelector('#cidade').value = client.cidade
+}
+const editClient = (index) => {
+    const client = readClient()[index]
+    fillFields(client)
+    openModal()
+    
+}
+const editDelete = (event) => {
+    if (event.target.type == 'button') {
+
+        const [action, index] = event.target.id.split('-')
+        
+        if (action == 'edit'){
+           editClient(index)
+        } else {
+        }
+    }
+}
+
 
 
 updateTable()
@@ -119,7 +146,8 @@ document.querySelector('#cadastrarCliente')
 document.querySelector('#modalClose')
     .addEventListener('click', closeModal)
 
+document.querySelector('#tableClient>tbody')
+    .addEventListener('click', editDelete)
 
 
    // https://www.youtube.com/watch?v=_HEIqE_qqbQ&t=340s&ab_channel=FernandoLeonid
-    // time 1:12:39
