@@ -130,7 +130,12 @@ const editDelete = (event) => {
         if (action == 'edit'){
            editClient(index)
         } else {
-            
+            const client = readClient()[index]
+            const response = confirm(`Deseja realmente excluir o cliente ${client.nome}`)
+            if(response) {
+                deleteClient()
+                updateTable()
+            }
         }
     }
 }
