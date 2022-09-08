@@ -36,7 +36,7 @@ const createClient = (client) => {
 const readClient = () => getLocalStorage()
 
 //CRUD - UPDATE
-const updateCliente = (index, client) => {
+const updateClient = (index, client) => {
     const dbClient = readClient()
     dbClient[index] = client
     setLocalStorage(dbClient)
@@ -47,11 +47,6 @@ const deleteClient = (index) =>{
     dbClient.splice(index, 1)
     setLocalStorage(dbClient)
 }
-
-
-
-
-
 
 //interação com usuario
 const clearFields = () => {
@@ -68,11 +63,21 @@ const saveClient = () => {
             celular: document.querySelector('#celular').value,
             cidade: document.querySelector('#cidade').value
        }
-       createClient(client)
-       updateTable()
-       closeModal()
+       const index = document.querySelector('#nome').dataset.index
+        if(index == 'new') {
+            createClient(client)
+            updateTable()
+            closeModal()
+        } else{
+            updateClient(index, client)
+            updateTable()
+            closeModal()
+        }
+       
     }
 }
+
+
 const createRow = (client, index) => {
     const newRow = document.createElement('tr')
     newRow.innerHTML = `
@@ -99,16 +104,20 @@ const updateTable = () => {
     clearTable()
     dbClient.forEach(createRow)
 }
+updateTable()
 
-
+//EDIT CLIENT
 const fillFields = (client) => {
     document.querySelector('#nome').value = client.nome
     document.querySelector('#email').value = client.email
     document.querySelector('#celular').value = client.celular
     document.querySelector('#cidade').value = client.cidade
+    document.querySelector('#nome').dataset.index = client.index
+
 }
 const editClient = (index) => {
     const client = readClient()[index]
+    client.index = index
     fillFields(client)
     openModal()
     
@@ -121,13 +130,14 @@ const editDelete = (event) => {
         if (action == 'edit'){
            editClient(index)
         } else {
+            
         }
     }
 }
 
 
 
-updateTable()
+
 
 
 const isValidFields =() => {
